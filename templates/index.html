@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+
+<style>
+
+  .jumbotron {
+    background-image: url("/static/main-background.jpg");
+    background-size: cover;
+    text-align: center;
+    padding: 5em inherit;
+    padding-top: 10%;
+    padding-bottom: 30%;
+    border-radius: 0;
+  }
+
+  .text_in_index {
+    padding-top: 2%;
+    padding-right: 7%;
+    padding-left: 7%;
+  }
+
+  body {
+    overflow-y:hidden;
+  }
+</style>  
+
+{% endblock %}
+
+{% block body %}
+
+<div class="jumbotron">
+  <div class="container text_in_index">
+    <br>
+    <br>
+    <h1 class="display-4">Simple. Easy. Fast.</h1>
+    <br>
+    <h5 class="display-5">Defining the future of hospital management software</p>
+    <br>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/about_hospitalhero" role="button">Learn more</a>
+    </p>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
