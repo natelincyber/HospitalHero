@@ -63,7 +63,7 @@ def addPatientForm():
         patient.cureTime = request.form['cureTime']
         patient.doctorID = request.form['doctorID']
         patient.field = request.form['field']
-        new_patient = PatientInfo(firstName=patient_first, lastName=patient_last, age=patient_age, state=patient_state, gender=patient_gender, medID=patient_medID, cureTime=patient_cureTime, doctorID=patient_doctorID, field=patient_field)
+        new_patient = PatientInfo(firstName=patient_first, lastName=patient_last, age=patient_age, state=patient_state,gender=patient_gender, medID=patient_medID, cureTime=patient_cureTime, doctorID=patient_doctorID, field=patient_field)
         db.session.add(new_patient)
         db.session.commit()
         return redirect('/see_patients') 
@@ -121,4 +121,4 @@ def new_patient_error(id):
         return render_template('new_patient_error.html', patient=patient) 
 
 if __name__ == '__main__': 
-    app.run(debug=False, host='0.0.0.0', port=8080)
+    app.run(debug=True)
