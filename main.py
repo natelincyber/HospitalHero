@@ -26,7 +26,7 @@ class PatientInfo(db.Model):
     def __str__(self):
         return 'PatientID:' + str(self.id)
 
-@app.route("/index.html")
+@app.route("/")
 def index():
     return render_template("index.html")
 
