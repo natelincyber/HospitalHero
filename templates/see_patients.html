@@ -186,7 +186,7 @@
                         {% elif cureDate == 7 %}
                             {% set finalDay = dischargeTimeNum + cureDate %}
 
-                            {% if month == 1 %}
+                            {% if month == 1 || month == 3 || month == 5 || month == 7 || month == 9 || month == 11%}
                                 {% set numDays = 31 %}
                                 {% if finalDay > numDays %}
                                     {% set overflow = finalDay - numDays %}
@@ -219,87 +219,7 @@
                                 {% endif %}  
                             {% endif %}
 
-                            {% if month == 3 %}
-                                {% set numDays = 31 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-
-                            {% if month == 4 %}
-                                {% set numDays = 30 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-
-                            {% if month == 5 %}
-                                {% set numDays = 31 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-                            
-                            {% if month == 6 %}
-                                {% set numDays = 30 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-
-                            {% if month == 7 %}
-                                {% set numDays = 31 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-                            
-                            {% if month == 8 %}
-                                {% set numDays = 31 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-
-                            {% if month == 9 %}
-                                {% set numDays = 30 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-
-                            {% if month == 10 %}
-                                {% set numDays = 31 %}
-                                {% if finalDay > numDays %}
-                                    {% set overflow = finalDay - numDays %}
-                                    {% set month = month + 1 %}
-                                    {% set finalDay = 0 %}
-                                    {% set finalDay = finalDay + overflow %}
-                                {% endif %}
-                            {% endif %}
-
-                            {% if month == 11 %}
+                            {% if month == 4 || month == 6 || month == 8 || month == 10 %}
                                 {% set numDays = 30 %}
                                 {% if finalDay > numDays %}
                                     {% set overflow = finalDay - numDays %}
