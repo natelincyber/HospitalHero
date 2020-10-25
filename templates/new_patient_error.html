@@ -136,9 +136,7 @@
                     </div>
                     <label for='state' class="lead"></label>
                     <select class="custom-select" name="state" id="state">
-
                         {% if patient.state %}
-
                             {% if patient.state|int == 1 %}
                                 <option value="1" selected>No (Use the Next Line To give Custom Input)</option>
                                 <option value="2">Mild (7-day recovery period)</option>
