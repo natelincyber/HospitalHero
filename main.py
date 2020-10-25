@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///patients.db'
 db = SQLAlchemy(app)
 
+
 class PatientInfo(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     firstName = db.Column(db.String(20), nullable=False)
@@ -21,14 +22,17 @@ class PatientInfo(db.Model):
     cureTime = db.Column(db.Integer, nullable=False)
     doctorID = db.Column(db.Integer, nullable=False)
     field = db.Column(db.String(25), nullable=False)
-    date_admitted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date_admitted = db.Column(
+        db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __str__(self):
         return 'PatientID:' + str(self.id)
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/see_patients", methods=['GET', 'POST'])
 def see_patients():
@@ -42,13 +46,16 @@ def see_patients():
         patient_cureTime = request.form['cureTime']
         patient_doctorID = request.form['doctorID']
         patient_field = request.form['field']
-        new_patient = PatientInfo(firstName=patient_first, lastName=patient_last, age=patient_age, state=patient_state, gender=patient_gender, medID=patient_medID, cureTime=patient_cureTime, doctorID=patient_doctorID, field=patient_field)        
+        new_patient = PatientInfo(firstName=patient_first, lastName=patient_last, age=patient_age, state=patient_state,
+                                  gender=patient_gender, medID=patient_medID, cureTime=patient_cureTime, doctorID=patient_doctorID, field=patient_field)
         db.session.add(new_patient)
         db.session.commit()
         return redirect('/see_patients')
     else:
-        all_patients = PatientInfo.query.order_by(PatientInfo.date_admitted).all()
+        all_patients = PatientInfo.query.order_by(
+            PatientInfo.date_admitted).all()
         return render_template('see_patients.html', see_patients=all_patients)
+
 
 @app.route("/see_patients/new_patient_form")
 def addPatientForm():
@@ -63,12 +70,14 @@ def addPatientForm():
         patient.cureTime = request.form['cureTime']
         patient.doctorID = request.form['doctorID']
         patient.field = request.form['field']
-        new_patient = PatientInfo(firstName=patient_first, lastName=patient_last, age=patient_age, state=patient_state,gender=patient_gender, medID=patient_medID, cureTime=patient_cureTime, doctorID=patient_doctorID, field=patient_field)
+        new_patient = PatientInfo(firstName=patient_first, lastName=patient_last, age=patient_age, state=patient_state,
+                                  gender=patient_gender, medID=patient_medID, cureTime=patient_cureTime, doctorID=patient_doctorID, field=patient_field)
         db.session.add(new_patient)
         db.session.commit()
-        return redirect('/see_patients') 
+        return redirect('/see_patients')
     else:
         return render_template('new_patient_form.html')
+
 
 @app.route('/see_patients/delete/<int:id>')
 def delete(id):
@@ -76,6 +85,7 @@ def delete(id):
     db.session.delete(patient)
     db.session.commit()
     return redirect('/see_patients')
+
 
 @app.route('/see_patients/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
@@ -87,19 +97,20 @@ def edit(id):
         patient.age = request.form['age']
         patient.state = request.form['state']
         patient.gender = request.form['gender']
-        patient.medID = request.form['medID'] 
+        patient.medID = request.form['medID']
         patient.cureTime = request.form['cureTime']
         patient.doctorID = request.form['doctorID']
-        patient.field = request.form['field']      
+        patient.field = request.form['field']
         db.session.commit()
-        return redirect('/see_patients') 
+        return redirect('/see_patients')
     else:
-        return render_template('edit.html', patient=patient)  
+        return render_template('edit.html', patient=patient)
 
 
 @app.route('/about_hospitalhero')
 def about():
     return render_template('about_hospitalhero.html')
+
 
 @app.route('/new_patient_error/<int:id>', methods=['GET', 'POST'])
 def new_patient_error(id):
@@ -111,14 +122,15 @@ def new_patient_error(id):
         patient.age = request.form['age']
         patient.state = request.form['state']
         patient.gender = request.form['gender']
-        patient.medID = request.form['medID'] 
+        patient.medID = request.form['medID']
         patient.cureTime = request.form['cureTime']
         patient.doctorID = request.form['doctorID']
-        patient.field = request.form['field']      
+        patient.field = request.form['field']
         db.session.commit()
-        return redirect('/see_patients') 
+        return redirect('/see_patients')
     else:
-        return render_template('new_patient_error.html', patient=patient) 
+        return render_template('new_patient_error.html', patient=patient)
 
-if __name__ == '__main__': 
-    app.run(debug=True)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
