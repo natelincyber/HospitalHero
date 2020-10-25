@@ -120,5 +120,14 @@ def new_patient_error(id):
     else:
         return render_template('new_patient_error.html', patient=patient) 
 
+@app.route('/test_for_covid/<int:id>', methods=['GET', 'POST'])
+def test_for_covid(id):
+    if request.method == 'POST':
+        patient = PatientInfo.query.get_or_404(id)
+        patient.cureTime = request.form['cureTime']
+        return redirect('/see_patients')
+    else:
+        return render_template('testForCovid-19.html', methods=['GET', 'POST'])
+
 if __name__ == '__main__': 
     app.run(debug=True, port = 5000)
